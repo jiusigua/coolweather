@@ -1,11 +1,13 @@
-package com.charlotte.coolweather.model;
+package com.charlotte.coolweather.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.charlotte.coolweather.db.CoolWeatherOpenHelper;
+import com.charlotte.coolweather.model.City;
+import com.charlotte.coolweather.model.County;
+import com.charlotte.coolweather.model.Province;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,16 @@ public class CoolWeatherDB {
     private CoolWeatherDB(Context context){
         CoolWeatherOpenHelper dbHelper = new CoolWeatherOpenHelper(context,DB_NAME,null,VERSION);
         db = dbHelper.getWritableDatabase();
+    }
+
+    /**
+     * 获取CoolWeatherDB的实例
+     */
+    public synchronized static CoolWeatherDB getInstance(Context context){
+        if (coolWeatherDB == null) {
+            coolWeatherDB = new CoolWeatherDB(context);
+        }
+        return coolWeatherDB;
     }
 
     /**

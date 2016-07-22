@@ -16,8 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.charlotte.coolweather.R;
+import com.charlotte.coolweather.db.CoolWeatherDB;
 import com.charlotte.coolweather.model.City;
-import com.charlotte.coolweather.model.CoolWeatherDB;
 import com.charlotte.coolweather.model.County;
 import com.charlotte.coolweather.model.Province;
 import com.charlotte.coolweather.util.HttpCallbackListener;
@@ -26,6 +26,8 @@ import com.charlotte.coolweather.util.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 /**
  * Created by Administrator on 2016/7/21 0021.
@@ -183,7 +185,7 @@ public class ChooseAreaActivity extends Activity {
             public void onFinish(String response) {
                 boolean result = false;
                 if ("province".equals(type)){
-                    result = Utility.handleProvinceResponse(coolWeatherDB,response);
+                    result = Utility.handleProvinceResponse(coolWeatherDB, response);
                 } else if ("city".equals(type)){
                     result = Utility.handleCitiesResponse(coolWeatherDB,response,selectedProvince.getId());
                 } else if ("county".equals(type)){

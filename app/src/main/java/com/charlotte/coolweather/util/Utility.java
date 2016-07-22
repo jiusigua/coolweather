@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
+import com.charlotte.coolweather.db.CoolWeatherDB;
 import com.charlotte.coolweather.model.City;
-import com.charlotte.coolweather.model.CoolWeatherDB;
 import com.charlotte.coolweather.model.County;
 import com.charlotte.coolweather.model.Province;
 
@@ -23,8 +23,10 @@ import java.util.Locale;
 public class Utility {
     /**
      * 解析和处理服务器返回的省级数据
+     * @param coolWeatherDB
+     * @param response
      */
-    public synchronized static boolean handleProvinceResponse(CoolWeatherDB coolWeatherDB,String response){
+    public synchronized static boolean handleProvinceResponse(CoolWeatherDB coolWeatherDB, String response){
         if (!TextUtils.isEmpty(response)){
             String[] allProvinces = response.split(".");
             if (allProvinces != null && allProvinces.length > 0){
